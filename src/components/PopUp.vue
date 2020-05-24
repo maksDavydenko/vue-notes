@@ -1,23 +1,31 @@
 <template>
-    <div class="popUp" v-show="popUp">
+    <div class="popUp">
         <p>Вы дествительно хотите удалить заметку?</p>
         <button @click="removeNote()" class="popUp__btn">Да</button>
-        <button @click="reset" class="popUp__btn">Нет</button>
+        <button @click="reset()" class="popUp__btn">Нет</button>
     </div>
 </template>
 
 <script>
     export default {
+        props:{
+            notes: {
+                require: true
+            },
+            noteId: {
+                require: true
+            },
+
+            popUp: {
+                require: true
+            }
+        },
         name: 'PopUp',
         popUp: false,
-        noteId: null,
         notes: JSON.parse(localStorage.getItem('notes')) === null ?
             [] : JSON.parse(localStorage.getItem('notes')),
         methods: {
-            popUpDel(id){
-                this.popUp = true
-                this.noteId = id;
-            },
+
             removeNote() {
                 let index;
                 this.notes.forEach(i => {
@@ -27,11 +35,10 @@
                 })
                 this.notes.splice(index, 1);
                 localStorage.setItem('notes', JSON.stringify(this.notes));
-                this.popUp = false
-
+                this.$emit('closePopUp');
             },
             reset(){
-                this.popUp = false
+                this.$emit('closePopUp');
             }
         }
     }
@@ -39,10 +46,10 @@
 
 <style scoped>
     .popUp{
-        position: absolute;
+        position: fixed;
         top: 50%;
         left: 50%;
-        transform: translate(-50%, 50%);
+        transform: translate(-50%, -50%);
         z-index: 999;
         border: 1px solid #000;
         padding: 40px;

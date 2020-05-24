@@ -23,18 +23,22 @@
                 <button class="btn remove" @click="popUpDel(note.id)" >Удалить</button>
             </div>
         </div>
-
+        <pop-up v-if="popUpVisible" :popUp="popUp" :notes="notes" :noteId="noteId" @closePopUp="closePopUp"></pop-up>
     </div>
 </template>
 
 <script>
 
+    import PopUp from './PopUp';
     export default {
+        components: {PopUp},
         data(){
                 let dataList = JSON.parse(localStorage.getItem('notes')) === null ?
                     [] : JSON.parse(localStorage.getItem('notes'));
               return {
                   notes: dataList,
+                  noteId: null,
+                  popUpVisible: false,
               }
             },
         btn: true,
@@ -87,15 +91,12 @@
                 this.notes[indexNote].todoList.splice(indexTodo ,1);
     },
             popUpDel(id){
-                let index;
-                this.notes.forEach(i => {
-                    if(i.id === id){
-                        index = this.notes.indexOf(i);
-                    }
-                })
+                this.popUpVisible = true;
+                this.noteId = id;
 
-                this.notes.splice(index ,1);
-                localStorage.setItem('notes', JSON.stringify( this.notes));
+            },
+            closePopUp(){
+                this.popUpVisible = false
             }
         }
     }
@@ -157,10 +158,10 @@
     border: none;
     color: #fff;
 }
-.delete{
+.delete{cursor: pointer;
 }
-    .completed{
-        text-decoration: line-through;
-        color: #ccc;
-    }
+    /*.completed{*/
+    /*    text-decoration: line-through;*/
+    /*    color: #ccc;*/
+    /*}*/
 </style>
