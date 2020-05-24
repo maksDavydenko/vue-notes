@@ -1,20 +1,20 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Notes from './Notes';
-import TodoItem from './TodoItem';
+import MainPage from './MainPage';
+import editPage from './editPage';
 Vue.use(Router)
 
 const router = new Router({
     routes: [
         {
             path: '/',
-            name: 'todoItem',
-            component: TodoItem
-        }, {
-            path: '/notes',
-            name: 'notes',
-            component: Notes
-        }
+            name: 'main',
+            component: MainPage
+            }, {
+                path: '/edit',
+                name: 'edit',
+                component: editPage
+            }
     ]
 })
 

@@ -23,19 +23,27 @@
                 <button class="btn remove" @click="popUpDel(note.id)" >Удалить</button>
             </div>
         </div>
+
     </div>
 </template>
 
 <script>
 
     export default {
+        data(){
+                let dataList = JSON.parse(localStorage.getItem('notes')) === null ?
+                    [] : JSON.parse(localStorage.getItem('notes'));
+              return {
+                  notes: dataList,
+              }
+            },
         btn: true,
         name: 'editPage',
-        props: {
-            notes: {
-                require: true
-            }
-        },
+        // props: {
+        //     notes: {
+        //         // require: true
+        //     }
+        // },
 
         methods: {
             addTodoToArr(note){
