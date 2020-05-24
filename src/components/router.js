@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import MainPage from './MainPage';
 import editPage from './editPage';
+
 Vue.use(Router)
 
 const router = new Router({
@@ -10,11 +11,12 @@ const router = new Router({
             path: '/',
             name: 'main',
             component: MainPage
-            }, {
-                path: '/edit',
-                name: 'edit',
-                component: editPage
-            }
+        },
+        {
+            path: '/edit',
+            name: 'edit',
+            component: editPage
+        }
     ]
 })
 

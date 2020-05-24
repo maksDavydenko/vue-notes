@@ -9,14 +9,8 @@
             <div @click="popUpDel(note.id)" class="delete">Удалить</div>
         </li>
     </ul>
-<!--        <div class="popUp" v-show="popUp">-->
-<!--            <p>Вы дествительно хотите удалить заметку?</p>-->
-<!--            <button @click="removeNote()" class="popUp__btn">Да</button>-->
-<!--            <button @click="reset" class="popUp__btn">Нет</button>-->
-<!--        </div>-->
         <pop-up v-if="popUpVisible" :popUp="popUp" :notes="notes" :noteId="noteId" @closePopUp="closePopUp" ></pop-up>
     </div>
-
 </template>
 
 <script>
@@ -34,30 +28,14 @@
                 popUpVisible: false,
             }
         },
-
         methods: {
             popUpDel(id){
                 this.popUpVisible = true
                 this.noteId = id;
             },
-    closePopUp(){
-        this.popUpVisible = false
-    }
-        //     removeNote() {
-        //         let index;
-        //         this.notes.forEach(i => {
-        //             if (i.id === this.noteId) {
-        //                 index = this.notes.indexOf(i);
-        //             }
-        //         })
-        //         this.notes.splice(index, 1);
-        //         localStorage.setItem('notes', JSON.stringify(this.notes));
-        //         this.popUp = false
-        //
-        //     },
-        //     reset(){
-        //         this.popUp = false
-        //     }
+            closePopUp(){
+                this.popUpVisible = false
+            }
         }
     }
 
@@ -70,7 +48,6 @@
     h2{
         margin-top: 0;
     }
-
     .note-block{
         position: relative;
         margin-bottom: 20px;
@@ -86,5 +63,4 @@
         color: #fff;
         cursor: pointer;
     }
-
 </style>

@@ -19,7 +19,6 @@
         <h2 class="subtitle">Список заметок:</h2>
         <Notes :notes="notes"></Notes>
     </div>
-
 </template>
 
 <script>
@@ -36,6 +35,7 @@
                 title: ''
             }
         },
+
         components: {
             Notes,
         },
@@ -107,7 +107,6 @@
     }
     .addItem{
         padding: 7px;
-
     }
     .btn{
         padding: 9px;
@@ -118,7 +117,6 @@
 
     }
     .submitBtn{
-
         padding: 10px;
     }
 </style>
